@@ -1,0 +1,26 @@
+# Controller + monitor parameters. Values that the launch file also sets
+# (num_robots, spawn_*, radius, omega, center_*, robot_id) are overridden by it;
+# change those through launch arguments instead.
+/**:
+  ros__parameters:
+    # ── control law (formation_controller) ─────────────────────────────────
+    k_radial:     0.8     # 1/s   pull toward the circle
+    k_angular:    0.4     # 1/s   equalise gaps to ring neighbours
+    k_repulse:    0.6     # m/s per metre inside d_safe
+    d_safe:       0.6     # m     separation distance
+    rho_min:      0.6     # m     floor on radius in rho*theta_dot
+    look_ahead:   0.15    # m     control point ahead of the base
+    v_max:        0.20    # m/s   Burger hardware limit is 0.22
+    w_max:        2.0     # rad/s Burger hardware limit is 2.84
+    comm_range:   50.0    # m     peers farther than this are ignored
+    control_rate: 20.0    # Hz
+    peer_timeout: 2.0     # s     drop a peer not heard from for this long
+    start_delay:  2.0     # s     wait after first odom before moving
+    log_period:   5.0     # s
+
+    # ── monitor (formation_monitor) ────────────────────────────────────────
+    monitor_period: 1.0   # s
+    tol_radius:     0.05  # m     max |rho - R| counted as converged
+    tol_gap_deg:    5.0   # deg   max |gap - 360/N| counted as converged
+    hold_time:      10.0  # s     tolerance must hold this long
+    frame_id:       world
